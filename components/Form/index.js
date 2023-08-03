@@ -24,21 +24,6 @@ const Textarea = styled.textarea`
   padding: 0.5rem;
 `;
 
-const AddImageButton = styled.button`
-  background-color: black;
-  width: 10rem;
-  height: 5rem;
-  margin: auto;
-  margin-top: 5px;
-  padding: 0.8rem;
-  border-radius: 0.6rem;
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  border: none;
-  font-size: inherit;
-`;
-
 export default function Form({ onSubmit, defaultData }) {
   function handleSubmit(event) {
     event.preventDefault();
@@ -49,8 +34,6 @@ export default function Form({ onSubmit, defaultData }) {
 
   return (
     <FormContainer onSubmit={handleSubmit}>
-      <AddImageButton type="submit">Add Image</AddImageButton>
-
       <Label htmlFor="where">Where:</Label>
       <Input
         id="where"
