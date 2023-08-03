@@ -39,23 +39,18 @@ const AddImageButton = styled.button`
   font-size: inherit;
 `;
 
-
-
 export default function Form({ onSubmit, defaultData }) {
-    function handleSubmit(event) {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-        const data = Object.fromEntries(formData);
-        onSubmit(data);
-}
+  function handleSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    onSubmit(data);
+  }
 
-return (
+  return (
     <FormContainer onSubmit={handleSubmit}>
+      <AddImageButton type="submit">Add Image</AddImageButton>
 
-      <AddImageButton type="submit">
-      Add Image
-      </AddImageButton>
-        
       <Label htmlFor="where">Where:</Label>
       <Input
         id="where"
@@ -76,7 +71,7 @@ return (
         name="withme"
         type="text"
         defaultValue={defaultData?.withme}
-        />
+      />
       <Label htmlFor="soundtrack">Soundtrack:</Label>
       <Input
         id="soundtrack"
@@ -90,11 +85,10 @@ return (
         id="notes"
         cols="30"
         rows="5"
-        defaultValue={defaultData?.notes}
-      ></Textarea>
+        defaultValue={defaultData?.notes}></Textarea>
       <SubmitButton type="submit">
         {defaultData ? "Edit" : "Submit"}
-        </SubmitButton>
-      </FormContainer>
-)
+      </SubmitButton>
+    </FormContainer>
+  );
 }
