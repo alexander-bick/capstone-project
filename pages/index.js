@@ -1,6 +1,7 @@
 import Head from "next/head";
 import styled from "styled-components";
 import { Inter } from "next/font/google";
+import Form from "@/components/Form/index.js";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,7 +15,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={inter.className}>
-        <Heading>🐧Penguin Capstone Template🐧</Heading>
+        <Form />
       </main>
     </>
   );
