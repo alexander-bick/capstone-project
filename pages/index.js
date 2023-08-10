@@ -7,13 +7,11 @@ import React, { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
-  const [submittedData, setSubmittedData] = useState(null);
-  const router = useRouter(); // Initialize router
+export default function Home({ locationData }) {
+  const router = useRouter(); 
 
   const handleFormSubmit = (formData) => {
-    setSubmittedData(formData);
-    router.push("/Location"); // Navigate to the LocationCard page
+    router.push("/Location"); 
   };
 
   return (
@@ -25,7 +23,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={inter.className}>
-        <Form onSubmit={handleFormSubmit}/>
+        <Form onSubmit={handleFormSubmit} locationData={locationData} />
       </main>
     </>
   );

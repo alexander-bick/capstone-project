@@ -8,7 +8,7 @@ const FormContainer = styled.form`
   border-radius: 0.5rem;
   padding: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 500px; 
+  max-width: 500px;
   margin: 0 auto;
 `;
 
@@ -52,11 +52,9 @@ export default function Form({ onSubmit }) {
       formObject[key] = value;
     });
 
-    // Save the form data to Local Storage
-
     localStorage.setItem("favoriteLocation", JSON.stringify(formObject));
 
-    onSubmit(formObject); // Call the onSubmit prop with the form data
+    onSubmit(formObject);
   };
 
   return (

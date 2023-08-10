@@ -1,10 +1,5 @@
-import LocationCard from "../../components/LocationCard/index.js";
+import LocationCard from "@/components/LocationCard/index.js";
 
-export default function LocationDetails() {
-    
-    return(
-        <>
-        <LocationCard />
-        </>
-    )
+export default function Location() {
+  return <LocationCard />;
 }

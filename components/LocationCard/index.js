@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
+import Link from "next/link";
+import Image from "next/image";
 
 const PageHeader = styled.header`
   text-align: center;
@@ -55,69 +57,95 @@ const ReturnButtonContainer = styled.div`
   justify-content: center;
   border-top: 1px solid #ccc;
   padding-top: 1rem;
-`;
-
-const ReturnIcon = styled.img`
-  cursor: pointer;
+  margin-top: 1rem;
 `;
 
 export default function LocationCard() {
-  const router = useRouter(); // Initialize the router
-  const [submittedData, setSubmittedData] = useState(null); // Create state for submitted data
+  const router = useRouter();
+  const [submittedData, setSubmittedData] = useState(null);
 
   useEffect(() => {
     const dataFromLocalStorage = JSON.parse(
-      localStorage.getItem("favoriteLocation") // Call up data from localStorage
+      localStorage.getItem("favoriteLocation")
     );
-    setSubmittedData(dataFromLocalStorage); // Set the data to the state
+    setSubmittedData(dataFromLocalStorage);
   }, []);
+
   const handleReturnClick = () => {
-    router.push("/"); // Navigate back to the landing page using the router
+    router.push("/");
   };
 
   return (
     <>
       <CardContainer>
         <PageHeader>
-          <HeaderTitle>Favorite Location</HeaderTitle>
+          <HeaderTitle>Location</HeaderTitle>
         </PageHeader>
         <CardImage src="/placeholder.svg" alt="Picture" />
         <FieldContainer>
           <Label>
-            <img src="/where_39.png" alt="Where icon" />
+            <Image
+              src="/where_39.png"
+              alt="Where icon"
+              width={39}
+              height={39}
+            />
           </Label>
           <FieldValue>{submittedData?.where}</FieldValue>
         </FieldContainer>
         <FieldContainer>
           <Label>
-            <img src="/calendarWhite_39.png" alt="When icon" />
+            <Image
+              src="/calendarWhite_39.png"
+              alt="When icon"
+              width={39}
+              height={39}
+            />
           </Label>
           <FieldValue>{submittedData?.when}</FieldValue>
         </FieldContainer>
         <FieldContainer>
           <Label>
-            <img src="/withme_39.png" alt="With me icon" />
+            <Image
+              src="/withme_39.png"
+              alt="With me icon"
+              width={39}
+              height={39}
+            />
           </Label>
           <FieldValue>{submittedData?.withme}</FieldValue>
         </FieldContainer>
         <FieldContainer>
           <Label>
-            <img src="/soundtrack_39.png" alt="Soundtrack icon" />
+            <Image
+              src="/soundtrack_39.png"
+              alt="Soundtrack icon"
+              width={39}
+              height={39}
+            />
           </Label>
           <FieldValue>{submittedData?.soundtrack}</FieldValue>
         </FieldContainer>
         <NotesContainer>
           <Label>
-            <img src="/notes_39.png" alt="Soundtrack icon" />
+            <Image
+              src="/notes_39.png"
+              alt="Soundtrack icon"
+              width={39}
+              height={39}
+            />
           </Label>
           <p>{submittedData?.notes}</p>
         </NotesContainer>
         <ReturnButtonContainer>
-          <ReturnIcon
-            src="/return_39.png"
-            alt="Return Icon"
-            onClick={handleReturnClick}
-          />
+          <Link href="/" onClick={handleReturnClick}>
+            <Image
+              src="/return_39.png"
+              alt="Return Icon"
+              width={49}
+              height={39}
+            />
+          </Link>
         </ReturnButtonContainer>
       </CardContainer>
     </>
