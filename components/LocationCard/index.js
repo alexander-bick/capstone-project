@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 
@@ -18,7 +18,7 @@ const CardContainer = styled.div`
   border-radius: 0.5rem;
   padding: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 500px; 
+  max-width: 500px;
   margin: 0 auto;
 `;
 
@@ -30,8 +30,8 @@ const CardImage = styled.img`
 
 const FieldContainer = styled.div`
   margin-bottom: 1rem;
-  display: flex; 
-  align-items: center; 
+  display: flex;
+  align-items: center;
 `;
 
 const Label = styled.label`
@@ -46,8 +46,8 @@ const FieldValue = styled.p`
 
 const NotesContainer = styled.div`
   margin-top: 1rem;
-  display: flex; 
-  align-items: center; 
+  display: flex;
+  align-items: center;
 `;
 
 const ReturnButtonContainer = styled.div`
@@ -63,11 +63,16 @@ const ReturnIcon = styled.img`
 
 export default function LocationCard() {
   const router = useRouter(); // Initialize the router
+  const [submittedData, setSubmittedData] = useState(null); // Create state for submitted data
 
-  const submittedData = JSON.parse(localStorage.getItem("favoriteLocation")); // Retrieve the submitted data from Local Storage
-
+  useEffect(() => {
+    const dataFromLocalStorage = JSON.parse(
+      localStorage.getItem("favoriteLocation") // Call up data from localStorage
+    );
+    setSubmittedData(dataFromLocalStorage); // Set the data to the state
+  }, []);
   const handleReturnClick = () => {
-    router.push("/"); // Navigate back to the landing page
+    router.push("/"); // Navigate back to the landing page using the router
   };
 
   return (
