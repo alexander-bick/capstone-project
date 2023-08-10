@@ -1,4 +1,16 @@
+import React from "react";
 import styled from "styled-components";
+import { useRouter } from "next/router";
+
+const PageHeader = styled.header`
+  text-align: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #ccc;
+`;
+
+const HeaderTitle = styled.h1`
+  margin: 0;
+`;
 
 const CardContainer = styled.div`
   background-color: white;
@@ -18,12 +30,14 @@ const CardImage = styled.img`
 
 const FieldContainer = styled.div`
   margin-bottom: 1rem;
+  display: flex; 
+  align-items: center; 
 `;
 
 const Label = styled.label`
-  font-weight: bold;
-  display: block;
-  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 `;
 
 const FieldValue = styled.p`
@@ -32,32 +46,75 @@ const FieldValue = styled.p`
 
 const NotesContainer = styled.div`
   margin-top: 1rem;
+  display: flex; 
+  align-items: center; 
 `;
 
-export default function LocationCard({ data }) {
+const ReturnButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid #ccc;
+  padding-top: 1rem;
+`;
+
+const ReturnIcon = styled.img`
+  cursor: pointer;
+`;
+
+export default function LocationCard() {
+  const router = useRouter(); // Initialize the router
+
+  const submittedData = JSON.parse(localStorage.getItem("favoriteLocation")); // Retrieve the submitted data from Local Storage
+
+  const handleReturnClick = () => {
+    router.push("/"); // Navigate back to the landing page
+  };
+
   return (
-    <CardContainer>
-      <CardImage src="public/placeholderImage.svg" alt="Favorite Location" />
-      <FieldContainer>
-        <Label>Where:</Label>
-        <FieldValue>{data.where}</FieldValue>
-      </FieldContainer>
-      <FieldContainer>
-        <Label>When:</Label>
-        <FieldValue>{data.when}</FieldValue>
-      </FieldContainer>
-      <FieldContainer>
-        <Label>With me:</Label>
-        <FieldValue>{data.withme}</FieldValue>
-      </FieldContainer>
-      <FieldContainer>
-        <Label>Soundtrack:</Label>
-        <FieldValue>{data.soundtrack}</FieldValue>
-      </FieldContainer>
-      <NotesContainer>
-        <Label>Notes:</Label>
-        <p>{data.notes}</p>
-      </NotesContainer>
-    </CardContainer>
+    <>
+      <CardContainer>
+        <PageHeader>
+          <HeaderTitle>Favorite Location</HeaderTitle>
+        </PageHeader>
+        <CardImage src="/placeholder.svg" alt="Picture" />
+        <FieldContainer>
+          <Label>
+            <img src="/where_39.png" alt="Where icon" />
+          </Label>
+          <FieldValue>{submittedData?.where}</FieldValue>
+        </FieldContainer>
+        <FieldContainer>
+          <Label>
+            <img src="/calendarWhite_39.png" alt="When icon" />
+          </Label>
+          <FieldValue>{submittedData?.when}</FieldValue>
+        </FieldContainer>
+        <FieldContainer>
+          <Label>
+            <img src="/withme_39.png" alt="With me icon" />
+          </Label>
+          <FieldValue>{submittedData?.withme}</FieldValue>
+        </FieldContainer>
+        <FieldContainer>
+          <Label>
+            <img src="/soundtrack_39.png" alt="Soundtrack icon" />
+          </Label>
+          <FieldValue>{submittedData?.soundtrack}</FieldValue>
+        </FieldContainer>
+        <NotesContainer>
+          <Label>
+            <img src="/notes_39.png" alt="Soundtrack icon" />
+          </Label>
+          <p>{submittedData?.notes}</p>
+        </NotesContainer>
+        <ReturnButtonContainer>
+          <ReturnIcon
+            src="/return_39.png"
+            alt="Return Icon"
+            onClick={handleReturnClick}
+          />
+        </ReturnButtonContainer>
+      </CardContainer>
+    </>
   );
 }

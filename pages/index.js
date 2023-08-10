@@ -2,10 +2,20 @@ import Head from "next/head";
 import styled from "styled-components";
 import { Inter } from "next/font/google";
 import Form from "@/components/Form/index.js";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [submittedData, setSubmittedData] = useState(null);
+  const router = useRouter(); // Initialize router
+
+  const handleFormSubmit = (formData) => {
+    setSubmittedData(formData);
+    router.push("/Location"); // Navigate to the LocationCard page
+  };
+
   return (
     <>
       <Head>
@@ -15,7 +25,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={inter.className}>
-        <Form />
+        <Form onSubmit={handleFormSubmit}/>
       </main>
     </>
   );

@@ -24,38 +24,51 @@ const Textarea = styled.textarea`
   padding: 0.5rem;
 `;
 
-export default function Form({ defaultData}) {
-  
+export default function Form({ onSubmit }) {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const formObject = {};
+    formData.forEach((value, key) => {
+      formObject[key] = value;
+    });
+
+    // Save the form data to Local Storage
+
+    localStorage.setItem("favoriteLocation", JSON.stringify(formObject));
+
+    onSubmit(formObject); // Call the onSubmit prop with the form data
+  };
 
   return (
-    <FormContainer>
+    <FormContainer onSubmit={handleSubmit}>
       <Label htmlFor="where">Where:</Label>
       <Input
         id="where"
         name="where"
         type="text"
-        defaultValue={defaultData?.where}
+        
       />
       <Label htmlFor="when">When:</Label>
       <Input
         id="when"
         name="when"
         type="date"
-        defaultValue={defaultData?.when}
+        
       />
       <Label htmlFor="withme">With me:</Label>
       <Input
         id="withme"
         name="withme"
         type="text"
-        defaultValue={defaultData?.withme}
+        
       />
       <Label htmlFor="soundtrack">Soundtrack:</Label>
       <Input
         id="soundtrack"
         name="soundtrack"
         type="text"
-        defaultValue={defaultData?.soundtrack}
+        
       />
       <Label htmlFor="notes">Notes:</Label>
       <Textarea
@@ -63,9 +76,9 @@ export default function Form({ defaultData}) {
         id="notes"
         cols="30"
         rows="5"
-        defaultValue={defaultData?.notes}></Textarea>
+        ></Textarea>
       <SubmitButton type="submit">
-        {defaultData ? "Edit" : "Submit"}
+        Submit
       </SubmitButton>
     </FormContainer>
   );
