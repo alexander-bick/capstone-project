@@ -24,7 +24,7 @@ const CardContainer = styled.div`
   margin: 0 auto;
 `;
 
-const CardImage = styled.img`
+const CardImage = styled(Image)`
   width: 100%;
   border-radius: 0.5rem;
   margin-bottom: 1rem;
@@ -52,7 +52,7 @@ const NotesContainer = styled.div`
   align-items: center;
 `;
 
-const ReturnButtonContainer = styled.div`
+const ReturnLink = styled(Link)`
   display: flex;
   justify-content: center;
   border-top: 1px solid #ccc;
@@ -81,7 +81,7 @@ export default function LocationCard() {
         <PageHeader>
           <HeaderTitle>Location</HeaderTitle>
         </PageHeader>
-        <CardImage src="/placeholder.svg" alt="Picture" />
+        <CardImage src="/placeholder.svg" alt="Picture" width={100} height={100} />
         <FieldContainer>
           <Label>
             <Image
@@ -137,16 +137,16 @@ export default function LocationCard() {
           </Label>
           <p>{submittedData?.notes}</p>
         </NotesContainer>
-        <ReturnButtonContainer>
-          <Link href="/" onClick={handleReturnClick}>
+        <ReturnLink href="/" onClick={handleReturnClick}>
+          
             <Image
               src="/return_39.png"
               alt="Return Icon"
               width={49}
               height={39}
             />
-          </Link>
-        </ReturnButtonContainer>
+          
+        </ReturnLink>
       </CardContainer>
     </>
   );
