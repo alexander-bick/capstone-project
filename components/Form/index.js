@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { CldUploadButton } from 'next-cloudinary';
 
 const FormContainer = styled.form`
   display: grid;
@@ -62,6 +63,7 @@ export default function Form({ onSubmit }) {
 
   return (
     <FormContainer onSubmit={handleSubmit}>
+      <CldUploadButton uploadPreset="ml_default">Upload image</CldUploadButton> 
       <Label htmlFor="where">Where:</Label>
       <Input id="where" name="where" type="text" />
       <Label htmlFor="when">When:</Label>
