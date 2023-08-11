@@ -30,7 +30,7 @@ const Textarea = styled.textarea`
   padding: 0.5rem;
 `;
 
-export const SubmitButton = styled.button`
+const SubmitButton = styled.button`
   background-color: lightblue;
   width: 20%;
   margin: auto;
@@ -57,12 +57,15 @@ export default function Form({ onSubmit }) {
     onSubmit(formObject);
   };
 
+  const today = new Date().toISOString().split("T")[0];
+
+
   return (
     <FormContainer onSubmit={handleSubmit}>
       <Label htmlFor="where">Where:</Label>
       <Input id="where" name="where" type="text" />
       <Label htmlFor="when">When:</Label>
-      <Input id="when" name="when" type="date" />
+      <Input id="when" name="when" type="date" max={today} />
       <Label htmlFor="withme">With me:</Label>
       <Input id="withme" name="withme" type="text" />
       <Label htmlFor="soundtrack">Soundtrack:</Label>
