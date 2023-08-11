@@ -2,10 +2,18 @@ import Head from "next/head";
 import styled from "styled-components";
 import { Inter } from "next/font/google";
 import Form from "@/components/Form/index.js";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+export default function Home({ locationData }) {
+  const router = useRouter(); 
+
+  const handleFormSubmit = (formData) => {
+    router.push("/Location"); 
+  };
+
   return (
     <>
       <Head>
@@ -15,7 +23,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={inter.className}>
-        <Form />
+        <Form onSubmit={handleFormSubmit} locationData={locationData} />
       </main>
     </>
   );
