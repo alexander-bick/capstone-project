@@ -3,6 +3,9 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
+import { CldImage } from 'next-cloudinary';
+
+
 
 const PageHeader = styled.header`
   text-align: center;
@@ -63,12 +66,16 @@ const ReturnLink = styled(Link)`
 export default function LocationCard() {
   const router = useRouter();
   const [submittedData, setSubmittedData] = useState(null);
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     const dataFromLocalStorage = JSON.parse(
       localStorage.getItem("favoriteLocation")
     );
     setSubmittedData(dataFromLocalStorage);
+    if (dataFromLocalStorage?.image) {
+      setImage(dataFromLocalStorage.image);
+    }
   }, []);
 
   const handleReturnClick = () => {
@@ -81,7 +88,14 @@ export default function LocationCard() {
         <PageHeader>
           <HeaderTitle>Location</HeaderTitle>
         </PageHeader>
-        <CardImage src="/placeholder.svg" alt="Picture" width={100} height={100} />
+         {image && (
+        <CldImage
+          src={image.src}
+          alt="Picture"
+          width={image.width/9}
+          height={image.height/9}
+        />
+      )}
         <FieldContainer>
           <Label>
             <Image
@@ -138,14 +152,12 @@ export default function LocationCard() {
           <p>{submittedData?.notes}</p>
         </NotesContainer>
         <ReturnLink href="/" onClick={handleReturnClick}>
-          
-            <Image
-              src="/return_39.png"
-              alt="Return Icon"
-              width={49}
-              height={39}
-            />
-          
+          <Image
+            src="/return_39.png"
+            alt="Return Icon"
+            width={49}
+            height={39}
+          />
         </ReturnLink>
       </CardContainer>
     </>
