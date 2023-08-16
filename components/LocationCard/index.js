@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 import { CldImage } from 'next-cloudinary';
+import useLocalStorageState from "use-local-storage-state";
+
 
 
 
@@ -65,17 +67,14 @@ const ReturnLink = styled(Link)`
 
 export default function LocationCard() {
   const router = useRouter();
-  const [submittedData, setSubmittedData] = useState(null);
-  const [image, setImage] = useState(null);
+  const [submittedData, setSubmittedData] = useLocalStorageState("favoriteLocation");
+  const image = submittedData?.image;
 
   useEffect(() => {
     const dataFromLocalStorage = JSON.parse(
       localStorage.getItem("favoriteLocation")
     );
     setSubmittedData(dataFromLocalStorage);
-    if (dataFromLocalStorage?.image) {
-      setImage(dataFromLocalStorage.image);
-    }
   }, []);
 
   const handleReturnClick = () => {
