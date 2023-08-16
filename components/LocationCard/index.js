@@ -86,7 +86,7 @@ export default function LocationCard() {
     <>
       <CardContainer>
         <PageHeader>
-          <HeaderTitle>Location</HeaderTitle>
+          <HeaderTitle>{submittedData?.title}</HeaderTitle>
         </PageHeader>
          {image && (
         <CldImage

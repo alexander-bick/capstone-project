@@ -78,6 +78,8 @@ export default function Form({ onSubmit }) {
       <CldUploadButton onUpload={onUploadImage} uploadPreset="ml_default">
         Upload image
       </CldUploadButton>
+      <Label htmlFor="title">Title:</Label>
+      <Input id="title" name="title" type="text" />
       <Label htmlFor="where">Where:</Label>
       <Input id="where" name="where" type="text" />
       <Label htmlFor="when">When:</Label>
