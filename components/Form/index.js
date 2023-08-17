@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { CldUploadButton } from "next-cloudinary";
+import { useState } from "react";
 
 const FormContainer = styled.form`
   display: grid;
@@ -44,6 +46,14 @@ const SubmitButton = styled.button`
 `;
 
 export default function Form({ onSubmit }) {
+  const [image, setImage] = useState();
+
+  function onUploadImage(imageUpload) {
+    if(imageUpload.event === "success") {
+      setImage({src: imageUpload.info.secure_url, height: imageUpload.info.height, width: imageUpload.info.width});
+    }
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -52,6 +62,10 @@ export default function Form({ onSubmit }) {
       formObject[key] = value;
     });
 
+    if (image) {
+      formObject.image = image;
+    }
+
     localStorage.setItem("favoriteLocation", JSON.stringify(formObject));
 
     onSubmit(formObject);
@@ -59,9 +73,13 @@ export default function Form({ onSubmit }) {
 
   const today = new Date().toISOString().split("T")[0];
 
-
   return (
     <FormContainer onSubmit={handleSubmit}>
+      <CldUploadButton onUpload={onUploadImage} uploadPreset="mhqwyi8p">
+        Upload image
+      </CldUploadButton>
+      <Label htmlFor="title">Title:</Label>
+      <Input id="title" name="title" type="text" />
       <Label htmlFor="where">Where:</Label>
       <Input id="where" name="where" type="text" />
       <Label htmlFor="when">When:</Label>
