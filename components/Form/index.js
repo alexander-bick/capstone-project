@@ -75,7 +75,7 @@ export default function Form({ onSubmit }) {
 
   return (
     <FormContainer onSubmit={handleSubmit}>
-      <CldUploadButton onUpload={onUploadImage} uploadPreset="ml_default">
+      <CldUploadButton onUpload={onUploadImage} uploadPreset="mhqwyi8p">
         Upload image
       </CldUploadButton>
       <Label htmlFor="title">Title:</Label>
