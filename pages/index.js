@@ -1,7 +1,7 @@
 import Head from "next/head";
 import styled from "styled-components";
 import { Inter } from "next/font/google";
-import Form from "@/components/Form/index.js";
+import List from "@/components/List/index.js";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
@@ -23,7 +23,7 @@ export default function Home({ locationData }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={inter.className}>
-        <Form onSubmit={handleFormSubmit} locationData={locationData} />
+      <List locations={locationsArray} />
       </main>
     </>
   );
