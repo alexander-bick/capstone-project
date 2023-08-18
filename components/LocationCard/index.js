@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -63,20 +63,9 @@ const ReturnLink = styled(Link)`
   margin-top: 1rem;
 `;
 
-export default function LocationCard() {
+export default function LocationCard({ location }) {
   const router = useRouter();
-  const [submittedData, setSubmittedData] = useState(null);
   const [image, setImage] = useState(null);
-
-  useEffect(() => {
-    const dataFromLocalStorage = JSON.parse(
-      localStorage.getItem("favoriteLocation")
-    );
-    setSubmittedData(dataFromLocalStorage);
-    if (dataFromLocalStorage?.image) {
-      setImage(dataFromLocalStorage.image);
-    }
-  }, []);
 
   const handleReturnClick = () => {
     router.push("/");
@@ -86,7 +75,7 @@ export default function LocationCard() {
     <>
       <CardContainer>
         <PageHeader>
-          <HeaderTitle>{submittedData?.title}</HeaderTitle>
+          <HeaderTitle>{location?.title}</HeaderTitle>
         </PageHeader>
          {image && (
         <CldImage
@@ -105,7 +94,7 @@ export default function LocationCard() {
               height={39}
             />
           </Label>
-          <FieldValue>{submittedData?.where}</FieldValue>
+          <FieldValue>{location?.where}</FieldValue>
         </FieldContainer>
         <FieldContainer>
           <Label>
@@ -116,7 +105,7 @@ export default function LocationCard() {
               height={39}
             />
           </Label>
-          <FieldValue>{submittedData?.when}</FieldValue>
+          <FieldValue>{location?.when}</FieldValue>
         </FieldContainer>
         <FieldContainer>
           <Label>
@@ -127,7 +116,7 @@ export default function LocationCard() {
               height={39}
             />
           </Label>
-          <FieldValue>{submittedData?.withme}</FieldValue>
+          <FieldValue>{location?.withme}</FieldValue>
         </FieldContainer>
         <FieldContainer>
           <Label>
@@ -138,7 +127,7 @@ export default function LocationCard() {
               height={39}
             />
           </Label>
-          <FieldValue>{submittedData?.soundtrack}</FieldValue>
+          <FieldValue>{location?.soundtrack}</FieldValue>
         </FieldContainer>
         <NotesContainer>
           <Label>
@@ -149,9 +138,9 @@ export default function LocationCard() {
               height={39}
             />
           </Label>
-          <p>{submittedData?.notes}</p>
+          <p>{location?.notes}</p>
         </NotesContainer>
-        <ReturnLink href="/" onClick={handleReturnClick}>
+        <ReturnLink href="/SubmitForm" onClick={handleReturnClick}>
           <Image
             src="/return_39.png"
             alt="Return Icon"
