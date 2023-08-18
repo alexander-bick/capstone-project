@@ -49,10 +49,14 @@ export default function Form({ onSubmit }) {
   const [image, setImage] = useState();
 
   function onUploadImage(imageUpload) {
-    if(imageUpload.event === "success") {
-      setImage({src: imageUpload.info.secure_url, height: imageUpload.info.height, width: imageUpload.info.width});
+    if (imageUpload.event === "success") {
+      setImage({
+        src: imageUpload.info.secure_url,
+        height: imageUpload.info.height,
+        width: imageUpload.info.width,
+      });
     }
-  };
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -66,7 +70,15 @@ export default function Form({ onSubmit }) {
       formObject.image = image;
     }
 
-    localStorage.setItem("favoriteLocation", JSON.stringify(formObject));
+    const existingLocations =
+      JSON.parse(localStorage.getItem("favoriteLocations")) || []; // Retrieve existing favourite locations or build an empty array 
+
+    existingLocations.push(formObject); // Add new favourite location to the existing array
+
+    localStorage.setItem(
+      "favoriteLocations",
+      JSON.stringify(existingLocations)
+    ); // Save the updated array in local storage
 
     onSubmit(formObject);
   };
