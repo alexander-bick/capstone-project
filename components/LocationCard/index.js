@@ -65,10 +65,9 @@ const ReturnLink = styled(Link)`
 
 export default function LocationCard({ location }) {
   const router = useRouter();
-  const [image, setImage] = useState(null);
 
   const handleReturnClick = () => {
-    router.push("/");
+    router.push("/SubmitForm");
   };
 
   return (
@@ -77,12 +76,12 @@ export default function LocationCard({ location }) {
         <PageHeader>
           <HeaderTitle>{location?.title}</HeaderTitle>
         </PageHeader>
-         {image && (
+         {location?.image && (
         <CldImage
-          src={image.src}
+          src={location.image.src}
           alt="Picture"
-          width={image.width/9}
-          height={image.height/9}
+          width={location.image.width/9}
+          height={location.image.height/9}
         />
       )}
         <FieldContainer>
