@@ -1,18 +1,21 @@
 import Head from "next/head";
 import styled from "styled-components";
 import { Inter } from "next/font/google";
-import List from "@/components/List/index.js";
+import List from "../components/List/index.js";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home({ locationData }) {
-  const router = useRouter(); 
+export default function Home() {
+  const [locationsArray, setLocationsArray] = useState([]);
 
-  const handleFormSubmit = (formData) => {
-    router.push("/Location"); 
-  };
+  useEffect(() => {
+    const dataFromLocalStorage = JSON.parse(
+      localStorage.getItem("favoriteLocations")
+    );
+    setLocationsArray(dataFromLocalStorage || []);
+  }, []);
 
   return (
     <>
@@ -23,7 +26,7 @@ export default function Home({ locationData }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={inter.className}>
-      <List locations={locationsArray} />
+        <List locations={locationsArray} />
       </main>
     </>
   );

@@ -1,6 +1,6 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import { CldUploadButton } from "next-cloudinary";
-import { useState } from "react";
 
 const FormContainer = styled.form`
   display: grid;
@@ -59,6 +59,7 @@ export default function Form({ onSubmit }) {
   }
 
   const handleSubmit = (event) => {
+    console.log('Form is being submitted');
     event.preventDefault();
     const formData = new FormData(event.target);
     const formObject = {};
@@ -80,7 +81,9 @@ export default function Form({ onSubmit }) {
       JSON.stringify(existingLocations)
     ); // Save the updated array in local storage
 
-    onSubmit(formObject);
+    if (onSubmit) {
+      onSubmit(formObject);
+    }
   };
 
   const today = new Date().toISOString().split("T")[0];
