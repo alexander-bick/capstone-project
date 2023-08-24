@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRouter } from 'next/router';
 import styled from "styled-components";
 import { CldUploadButton } from "next-cloudinary";
 
@@ -46,6 +47,7 @@ const SubmitButton = styled.button`
 `;
 
 export default function Form({ onSubmit }) {
+  const router = useRouter();
   const [image, setImage] = useState();
 
   function onUploadImage(imageUpload) {
@@ -59,7 +61,6 @@ export default function Form({ onSubmit }) {
   }
 
   const handleSubmit = (event) => {
-    console.log('Form is being submitted');
     event.preventDefault();
     const formData = new FormData(event.target);
     const formObject = {};
@@ -80,6 +81,9 @@ export default function Form({ onSubmit }) {
       "favoriteLocations",
       JSON.stringify(existingLocations)
     ); // Save the updated array in local storage
+
+    const newLocationIndex = existingLocations.length -1;
+    router.push(`/LocationSuccess?index=${newLocationIndex}`);
 
     if (onSubmit) {
       onSubmit(formObject);
