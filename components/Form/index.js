@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import styled from "styled-components";
 import { CldUploadButton } from "next-cloudinary";
 
@@ -73,7 +73,7 @@ export default function Form({ onSubmit }) {
     }
 
     const existingLocations =
-      JSON.parse(localStorage.getItem("favoriteLocations")) || []; // Retrieve existing favourite locations or build an empty array 
+      JSON.parse(localStorage.getItem("favoriteLocations")) || []; // Retrieve existing favourite locations or build an empty array
 
     existingLocations.push(formObject); // Add new favourite location to the existing array
 
@@ -82,7 +82,7 @@ export default function Form({ onSubmit }) {
       JSON.stringify(existingLocations)
     ); // Save the updated array in local storage
 
-    const newLocationIndex = existingLocations.length -1;
+    const newLocationIndex = existingLocations.length - 1;
     router.push(`/LocationSuccess?index=${newLocationIndex}`);
 
     if (onSubmit) {

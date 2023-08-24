@@ -3,9 +3,7 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
-import { CldImage } from 'next-cloudinary';
-
-
+import { CldImage } from "next-cloudinary";
 
 const PageHeader = styled.header`
   text-align: center;
@@ -76,14 +74,14 @@ export default function LocationCard({ location }) {
         <PageHeader>
           <HeaderTitle>{location?.title}</HeaderTitle>
         </PageHeader>
-         {location?.image && (
-        <CldImage
-          src={location.image.src}
-          alt="Picture"
-          width={location.image.width/9}
-          height={location.image.height/9}
-        />
-      )}
+        {location?.image && (
+          <CldImage
+            src={location.image.src}
+            alt="Picture"
+            width={location.image.width / 9}
+            height={location.image.height / 9}
+          />
+        )}
         <FieldContainer>
           <Label>
             <Image

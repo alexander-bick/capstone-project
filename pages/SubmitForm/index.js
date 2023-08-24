@@ -6,7 +6,6 @@ export default function SubmitForm(locationData) {
 
   const handleFormSubmit = (formData) => {
     router.push("/LocationSuccess");
-
-};
-return <Form onSubmit={handleFormSubmit} locationData={locationData} />;
+  };
+  return <Form onSubmit={handleFormSubmit} locationData={locationData} />;
 }
