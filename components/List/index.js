@@ -1,11 +1,11 @@
 import React from "react";
-import LocationCard from "../LocationCard/index.js";
+import LocationThumbnail from "../LocationThumbnail/index.js";
 
 export default function List({ locations }) {
   return (
     <div>
       {locations.map((location, index) => (
-        <LocationCard key={index} location={location} />
+        <LocationThumbnail key={index} location={location} />
       ))}
     </div>
   );
