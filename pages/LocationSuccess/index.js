@@ -5,8 +5,12 @@ export default function NewLocationSucess() {
   const router = useRouter();
   const { index } = router.query;
 
-  const locations = JSON.parse(localStorage.getItem("favoriteLocations")) || [];
-  const location = locations[index];
+  const existingLocations = typeof window !== 'undefined' 
+  ? JSON.parse(localStorage.getItem("favoriteLocations")) || [] 
+  : [];
 
-  return <NewLocationSuccess location={location} />;
+const location = existingLocations[index];
+
+
+return location ? <NewLocationSuccess location={location} /> : <p>Loading...</p>;
 }
