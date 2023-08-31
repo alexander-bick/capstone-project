@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useRouter } from "next/router";
 import NewLocationSuccess from "../../components/NewLocationSuccess/index.js";
 
@@ -5,11 +6,13 @@ export default function NewLocationSucess() {
   const router = useRouter();
   const { index } = router.query;
 
-  const existingLocations = typeof window !== 'undefined' 
-  ? JSON.parse(localStorage.getItem("favoriteLocations")) || [] 
-  : [];
+  const [location, setLocation] = useState(null);
 
-const location = existingLocations[index];
+  useEffect(() => {
+    const existingLocations = JSON.parse(localStorage.getItem('favoriteLocations')) || [];
+    const foundLocation = existingLocations[index];
+    setLocation(foundLocation);
+  }, [index]);
 
 
 return location ? <NewLocationSuccess location={location} /> : <p>Loading...</p>;
