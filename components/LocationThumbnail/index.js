@@ -6,7 +6,7 @@ export default function LocationThumbnail({ location }) {
     
   return (
     <div>
-      <Link href={`/Location?locationId=${location.id}`}>
+      <Link href={`/Location/${location.id}`}>
         {location?.image && (
           <CldImage
             src={location.image.src}

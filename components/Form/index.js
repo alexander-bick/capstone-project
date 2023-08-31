@@ -72,6 +72,8 @@ export default function Form({ onSubmit }) {
       formObject.image = image;
     }
 
+    formObject.id = Date.now().toString();
+
     const existingLocations =
       JSON.parse(localStorage.getItem("favoriteLocations")) || []; // Retrieve existing favourite locations or build an empty array
 
