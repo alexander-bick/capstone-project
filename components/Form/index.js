@@ -75,14 +75,14 @@ export default function Form({ onSubmit }) {
     formObject.id = Date.now().toString();
 
     const existingLocations =
-      JSON.parse(localStorage.getItem("favoriteLocations")) || []; // Retrieve existing favourite locations or build an empty array
+      JSON.parse(localStorage.getItem("favoriteLocations")) || []; 
 
-    existingLocations.push(formObject); // Add new favourite location to the existing array
+    existingLocations.push(formObject); 
 
     localStorage.setItem(
       "favoriteLocations",
       JSON.stringify(existingLocations)
-    ); // Save the updated array in local storage
+    ); 
 
     const newLocationIndex = existingLocations.length - 1;
     router.push(`/LocationSuccess?index=${newLocationIndex}`);
