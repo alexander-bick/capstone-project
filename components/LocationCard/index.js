@@ -137,7 +137,7 @@ export default function LocationCard({ location }) {
           </Label>
           <p>{location?.notes}</p>
         </NotesContainer>
-        <ReturnLink href="/SubmitForm" onClick={handleReturnClick}>
+        <ReturnLink href="/" onClick={handleReturnClick}>
           <Image
             src="/return_39.png"
             alt="Return Icon"
