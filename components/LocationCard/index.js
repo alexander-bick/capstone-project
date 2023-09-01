@@ -65,7 +65,7 @@ export default function LocationCard({ location }) {
   const router = useRouter();
 
   const handleReturnClick = () => {
-    router.push("/SubmitForm");
+    router.push("/");
   };
 
   return (
