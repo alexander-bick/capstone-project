@@ -9,7 +9,8 @@ export default function LocationDetail() {
   const [location, setLocation] = useState(null);
 
   useEffect(() => {
-    const existingLocations = JSON.parse(localStorage.getItem('favoriteLocations')) || [];
+    const existingLocations =
+      JSON.parse(localStorage.getItem("favoriteLocations")) || [];
     const foundLocation = existingLocations.find((loc) => loc.id === id);
     setLocation(foundLocation);
   }, [id]);

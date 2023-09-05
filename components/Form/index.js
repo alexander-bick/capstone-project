@@ -72,17 +72,17 @@ export default function Form({ onSubmit }) {
       formObject.image = image;
     }
 
-    formObject.id = Date.now().toString();
+    formObject.id = Math.random().toString(32).substring(2);
 
     const existingLocations =
-      JSON.parse(localStorage.getItem("favoriteLocations")) || []; 
+      JSON.parse(localStorage.getItem("favoriteLocations")) || [];
 
-    existingLocations.push(formObject); 
+    existingLocations.push(formObject);
 
     localStorage.setItem(
       "favoriteLocations",
       JSON.stringify(existingLocations)
-    ); 
+    );
 
     const newLocationIndex = existingLocations.length - 1;
     router.push(`/LocationSuccess?index=${newLocationIndex}`);
