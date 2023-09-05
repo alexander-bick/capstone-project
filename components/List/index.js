@@ -27,18 +27,18 @@ const ListContainer = styled.form`
 `;
 
 const PageFooter = styled.form`
-display: flex;
+  display: flex;
   justify-content: center;
   border-top: 1px solid #ccc;
   padding-top: 1rem;
   margin-top: 1rem;
-`
+`;
 const SubmitFormButton = styled.button`
   display: flex;
   justify-content: center;
   border-top: 1px solid #ccc;
-  padding-top: 0,5rem;
-  margin-top: 0,5rem;
+  padding-top: 0, 5rem;
+  margin-top: 0, 5rem;
   background: none;
   border: none;
   cursor: pointer;
@@ -55,19 +55,13 @@ export default function List({ locations }) {
       <PageHeader>
         <HeaderTitle>Rememory</HeaderTitle>
       </PageHeader>
-      {locations.map((location, index) => (
-        <LocationThumbnail key={index} location={location} />
+      {locations.map((location) => (
+        <LocationThumbnail key={location.id} location={location} />
       ))}
       <PageFooter>
         <SubmitFormButton onClick={handleConfirmClick}>
-        <Image
-            src="/add_50.png"
-            alt="Checkbox Icon"
-            width={50}
-            height={50}
-          /> 
+          <Image src="/add_50.png" alt="Checkbox Icon" width={50} height={50} />
         </SubmitFormButton>
-
       </PageFooter>
     </ListContainer>
   );
