@@ -130,14 +130,14 @@ export default function LocationCard({ location }) {
           <Label>
             <Image
               src="/notes_39.png"
-              alt="Soundtrack icon"
+              alt="Notes icon"
               width={39}
               height={39}
             />
           </Label>
           <p>{location?.notes}</p>
         </NotesContainer>
-        <ReturnLink href="/" onClick={handleReturnClick}>
+        <ReturnLink href="/">
           <Image
             src="/return_39.png"
             alt="Return Icon"

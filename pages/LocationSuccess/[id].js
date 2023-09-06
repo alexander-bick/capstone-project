@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import LocationCard from "../../components/LocationCard";
+import NewLocationSuccess from "../../components/NewLocationSuccess/index.js";
 import useLocalStorageState from "use-local-storage-state";
 
-export default function LocationDetail() {
+export default function NewLocationSucessPage() {
   const router = useRouter();
   const { id } = router.query;
 
@@ -17,5 +17,9 @@ export default function LocationDetail() {
     }
   }, [id, locations]);
 
-  return location ? <LocationCard location={location} /> : <p>Loading...</p>;
+  return location ? (
+    <NewLocationSuccess location={location} />
+  ) : (
+    <p>Loading...</p>
+  );
 }

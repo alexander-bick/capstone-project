@@ -26,7 +26,7 @@ const ListContainer = styled.form`
   margin: 0 auto;
 `;
 
-const PageFooter = styled.form`
+const PageFooter = styled.div`
   display: flex;
   justify-content: center;
   border-top: 1px solid #ccc;
@@ -37,18 +37,18 @@ const SubmitFormButton = styled.button`
   display: flex;
   justify-content: center;
   border-top: 1px solid #ccc;
-  padding-top: 0, 5rem;
-  margin-top: 0, 5rem;
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
   background: none;
   border: none;
   cursor: pointer;
 `;
 
-export default function List({ locations }) {
+export default function List({ locations = [] }) {
   const router = useRouter();
 
-  const handleConfirmClick = () => {
-    router.push("/SubmitForm");
+  const handleSubmitFormClick = () => {
+    router.push("/SubmitForm/");
   };
   return (
     <ListContainer>
@@ -59,7 +59,7 @@ export default function List({ locations }) {
         <LocationThumbnail key={location.id} location={location} />
       ))}
       <PageFooter>
-        <SubmitFormButton onClick={handleConfirmClick}>
+        <SubmitFormButton onClick={handleSubmitFormClick}>
           <Image src="/add_50.png" alt="Checkbox Icon" width={50} height={50} />
         </SubmitFormButton>
       </PageFooter>

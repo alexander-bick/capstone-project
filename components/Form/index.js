@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { CldUploadButton } from "next-cloudinary";
+import useLocalStorageState from "use-local-storage-state";
 
 const FormContainer = styled.form`
   display: grid;
@@ -49,6 +50,10 @@ const SubmitButton = styled.button`
 export default function Form({ onSubmit }) {
   const router = useRouter();
   const [image, setImage] = useState();
+  const [favoriteLocations, setFavoriteLocations] = useLocalStorageState(
+    "favoriteLocations",
+    []
+  );
 
   function onUploadImage(imageUpload) {
     if (imageUpload.event === "success") {
@@ -74,18 +79,10 @@ export default function Form({ onSubmit }) {
 
     formObject.id = Math.random().toString(32).substring(2);
 
-    const existingLocations =
-      JSON.parse(localStorage.getItem("favoriteLocations")) || [];
+    const newFavoriteLocations = [...favoriteLocations, formObject];
+    setFavoriteLocations(newFavoriteLocations);
 
-    existingLocations.push(formObject);
-
-    localStorage.setItem(
-      "favoriteLocations",
-      JSON.stringify(existingLocations)
-    );
-
-    const newLocationIndex = existingLocations.length - 1;
-    router.push(`/LocationSuccess?index=${newLocationIndex}`);
+    router.push(`/LocationSuccess/${formObject.id}`);
 
     if (onSubmit) {
       onSubmit(formObject);

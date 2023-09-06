@@ -1,16 +1,23 @@
 import GlobalStyle from "@/styles";
 import Head from "next/head";
-import { useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
 
 export default function App({ Component, pageProps }) {
-  const [locationData] = useState(null);
+  const [locationData, setLocationData] = useLocalStorageState(
+    "favoriteLocations",
+    []
+  );
   return (
     <>
       <GlobalStyle />
       <Head>
         <title>Capstone Project</title>
       </Head>
-      <Component {...pageProps} locationData={locationData} />
+      <Component
+        {...pageProps}
+        locationData={locationData}
+        setLocationData={setLocationData}
+      />
     </>
   );
 }
