@@ -7,7 +7,9 @@ import useLocalStorageState from "use-local-storage-state";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const [locationsArray] = useLocalStorageState("favoriteLocations", []);
+  const [locationsArray] = useLocalStorageState("favoriteLocations", {
+    defaultValue: [],
+  });
 
   return (
     <>

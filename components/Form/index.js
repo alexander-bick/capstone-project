@@ -52,7 +52,7 @@ export default function Form({ onSubmit }) {
   const [image, setImage] = useState();
   const [favoriteLocations, setFavoriteLocations] = useLocalStorageState(
     "favoriteLocations",
-    []
+    { defaultValue: [] }
   );
 
   function onUploadImage(imageUpload) {

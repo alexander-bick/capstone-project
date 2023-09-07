@@ -48,7 +48,7 @@ export default function List({ locations = [] }) {
   const router = useRouter();
 
   const handleSubmitFormClick = () => {
-    router.push("/SubmitForm/");
+    router.push("/SubmitForm");
   };
   return (
     <ListContainer>
@@ -59,7 +59,7 @@ export default function List({ locations = [] }) {
         <LocationThumbnail key={location.id} location={location} />
       ))}
       <PageFooter>
-        <SubmitFormButton onClick={handleSubmitFormClick}>
+        <SubmitFormButton type="button" onClick={handleSubmitFormClick}>
           <Image src="/add_50.png" alt="Checkbox Icon" width={50} height={50} />
         </SubmitFormButton>
       </PageFooter>

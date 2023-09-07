@@ -5,7 +5,9 @@ import useLocalStorageState from "use-local-storage-state";
 export default function App({ Component, pageProps }) {
   const [locationData, setLocationData] = useLocalStorageState(
     "favoriteLocations",
-    []
+    {
+      defaultValue: [],
+    }
   );
   return (
     <>

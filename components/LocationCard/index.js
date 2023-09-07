@@ -64,10 +64,6 @@ const ReturnLink = styled(Link)`
 export default function LocationCard({ location }) {
   const router = useRouter();
 
-  const handleReturnClick = () => {
-    router.push("/");
-  };
-
   return (
     <>
       <CardContainer>

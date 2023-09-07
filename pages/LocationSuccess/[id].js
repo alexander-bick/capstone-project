@@ -7,7 +7,9 @@ export default function NewLocationSucessPage() {
   const router = useRouter();
   const { id } = router.query;
 
-  const [locations] = useLocalStorageState("favoriteLocations", []);
+  const [locations] = useLocalStorageState("favoriteLocations", {
+    defaultValue: [],
+  });
   const [location, setLocation] = useState(null);
 
   useEffect(() => {
