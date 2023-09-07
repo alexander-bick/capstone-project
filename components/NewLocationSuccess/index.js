@@ -15,13 +15,17 @@ const HeaderTitle = styled.h1`
 `;
 
 const CardContainer = styled.div`
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
-  margin: 0 auto;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+background-color: white;
+border: 1px solid #ccc;
+border-radius: 0.5rem;
+padding: 1rem;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+max-width: 500px;
+margin: 0 auto;
+height: 100%;
 `;
 
 const CardImage = styled(Image)`
@@ -53,15 +57,13 @@ const NotesContainer = styled.div`
 `;
 
 const ConfirmButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-top: 1px solid #ccc;
-  padding-top: 1rem;
-  margin-top: 1rem;
-  background: none;
-  border: none;
-  cursor: pointer;
+align-self: center;  
+border-top: 1px solid #ccc;
+padding-top: 1rem;
+margin-top: 1rem;
+background: none;
+border: none;
+cursor: pointer;
 `;
 
 export default function NewLocationSuccess({ location }) {
