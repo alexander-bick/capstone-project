@@ -55,6 +55,7 @@ const NotesContainer = styled.div`
 const ConfirmButton = styled.button`
   display: flex;
   justify-content: center;
+  align-items: center;
   border-top: 1px solid #ccc;
   padding-top: 1rem;
   margin-top: 1rem;
