@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 import { CldImage } from "next-cloudinary";
+import useLocalStorageState from "use-local-storage-state";
 
 const PageHeader = styled.header`
   text-align: center;
@@ -53,6 +54,33 @@ const NotesContainer = styled.div`
   align-items: center;
 `;
 
+const EditButton = styled.button`
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  margin-right: 1rem;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #005ecc;
+  }
+`;
+
+const DeleteButton = styled.button`
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  margin-right: 1rem;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #c0392b;
+  }
+`;
+
 const ReturnLink = styled(Link)`
   display: flex;
   justify-content: center;
@@ -63,6 +91,24 @@ const ReturnLink = styled(Link)`
 
 export default function LocationCard({ location }) {
   const router = useRouter();
+
+  const [locations, setLocations] = useLocalStorageState("favoriteLocations", { defaultValue: [] });
+
+  const handleEdit = () => {
+    router.push(`/SubmitForm?title=${location.title}`);
+  };
+
+  const handleDelete = () => {
+    if (window.confirm("Sure you want to delete this location?")) {
+      if (locations && locations.length) {
+        const updatedLocations = locations.filter(
+           (loc) => loc.title !== location.title
+        );
+        setLocations(updatedLocations);
+        router.push("/");
+    }
+ }
+};
 
   return (
     <>
@@ -133,6 +179,24 @@ export default function LocationCard({ location }) {
           </Label>
           <p>{location?.notes}</p>
         </NotesContainer>
+        <div>
+          <EditButton onClick={() => handleEdit(location.id)}>
+            <Image
+              src="/edit_black_39.png"
+              alt="Return Icon"
+              width={39}
+              height={39}
+            />
+          </EditButton>
+          <DeleteButton onClick={() => handleDelete(location.id)}>
+            <Image
+              src="/delete_black_39.png"
+              alt="Return Icon"
+              width={39}
+              height={39}
+            />
+          </DeleteButton>
+        </div>
         <ReturnLink href="/">
           <Image
             src="/return_39.png"
