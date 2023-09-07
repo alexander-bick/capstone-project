@@ -142,7 +142,7 @@ export default function NewLocationSuccess({ location }) {
         </NotesContainer>
         <ConfirmButton onClick={handleConfirmClick}>
           <Image
-            src="/checkbox_50.png"
+            src="/Checkbox_50.png"
             alt="Checkbox Icon"
             width={50}
             height={50}
