@@ -1,6 +1,8 @@
+import React, { useState } from "react";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 import { CldUploadButton } from "next-cloudinary";
-import { useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
 
 const FormContainer = styled.form`
   display: grid;
@@ -46,13 +48,22 @@ const SubmitButton = styled.button`
 `;
 
 export default function Form({ onSubmit }) {
+  const router = useRouter();
   const [image, setImage] = useState();
+  const [favoriteLocations, setFavoriteLocations] = useLocalStorageState(
+    "favoriteLocations",
+    { defaultValue: [] }
+  );
 
   function onUploadImage(imageUpload) {
-    if(imageUpload.event === "success") {
-      setImage({src: imageUpload.info.secure_url, height: imageUpload.info.height, width: imageUpload.info.width});
+    if (imageUpload.event === "success") {
+      setImage({
+        src: imageUpload.info.secure_url,
+        height: imageUpload.info.height,
+        width: imageUpload.info.width,
+      });
     }
-  };
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -66,9 +77,16 @@ export default function Form({ onSubmit }) {
       formObject.image = image;
     }
 
-    localStorage.setItem("favoriteLocation", JSON.stringify(formObject));
+    formObject.id = Math.random().toString(32).substring(2);
 
-    onSubmit(formObject);
+    const newFavoriteLocations = [...favoriteLocations, formObject];
+    setFavoriteLocations(newFavoriteLocations);
+
+    router.push(`/LocationSuccess/${formObject.id}`);
+
+    if (onSubmit) {
+      onSubmit(formObject);
+    }
   };
 
   const today = new Date().toISOString().split("T")[0];

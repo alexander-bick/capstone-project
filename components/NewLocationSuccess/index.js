@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import Image from "next/image";
 import { CldImage } from "next-cloudinary";
 
@@ -16,13 +15,17 @@ const HeaderTitle = styled.h1`
 `;
 
 const CardContainer = styled.div`
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
-  margin: 0 auto;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+background-color: white;
+border: 1px solid #ccc;
+border-radius: 0.5rem;
+padding: 1rem;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+max-width: 500px;
+margin: 0 auto;
+height: 100%;
 `;
 
 const CardImage = styled(Image)`
@@ -53,16 +56,22 @@ const NotesContainer = styled.div`
   align-items: center;
 `;
 
-const ReturnLink = styled(Link)`
-  display: flex;
-  justify-content: center;
-  border-top: 1px solid #ccc;
-  padding-top: 1rem;
-  margin-top: 1rem;
+const ConfirmButton = styled.button`
+align-self: center;  
+border-top: 1px solid #ccc;
+padding-top: 1rem;
+margin-top: 1rem;
+background: none;
+border: none;
+cursor: pointer;
 `;
 
-export default function LocationCard({ location }) {
+export default function NewLocationSuccess({ location }) {
   const router = useRouter();
+
+  const handleConfirmClick = () => {
+    router.push("/");
+  };
 
   return (
     <>
@@ -126,21 +135,21 @@ export default function LocationCard({ location }) {
           <Label>
             <Image
               src="/notes_39.png"
-              alt="Notes icon"
+              alt="Soundtrack icon"
               width={39}
               height={39}
             />
           </Label>
           <p>{location?.notes}</p>
         </NotesContainer>
-        <ReturnLink href="/">
+        <ConfirmButton onClick={handleConfirmClick}>
           <Image
-            src="/return_39.png"
-            alt="Return Icon"
-            width={49}
-            height={39}
+            src="/Checkbox_50.png"
+            alt="Checkbox Icon"
+            width={50}
+            height={50}
           />
-        </ReturnLink>
+        </ConfirmButton>
       </CardContainer>
     </>
   );
