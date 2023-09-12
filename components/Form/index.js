@@ -47,9 +47,9 @@ const SubmitButton = styled.button`
   font-size: inherit;
 `;
 
-export default function Form({ onSubmit }) {
+export default function Form({ onSubmit, initialData = {} }) {
   const router = useRouter();
-  const [image, setImage] = useState();
+  const [image, setImage] = useState(initialData.image || null);
   const [favoriteLocations, setFavoriteLocations] = useLocalStorageState(
     "favoriteLocations",
     { defaultValue: [] }
@@ -77,10 +77,17 @@ export default function Form({ onSubmit }) {
       formObject.image = image;
     }
 
-    formObject.id = Math.random().toString(32).substring(2);
-
-    const newFavoriteLocations = [...favoriteLocations, formObject];
-    setFavoriteLocations(newFavoriteLocations);
+    if (initialData.id) {
+      formObject.id = initialData.id;
+      const updatedLocations = favoriteLocations.map((loc) =>
+        loc.id === initialData.id ? formObject : loc
+      );
+      setFavoriteLocations(updatedLocations);
+    } else {
+      formObject.id = Math.random().toString(32).substring(2);
+      const newFavoriteLocations = [...favoriteLocations, formObject];
+      setFavoriteLocations(newFavoriteLocations);
+    }
 
     router.push(`/LocationSuccess/${formObject.id}`);
 
@@ -97,17 +104,48 @@ export default function Form({ onSubmit }) {
         Upload image
       </CldUploadButton>
       <Label htmlFor="title">Title:</Label>
-      <Input id="title" name="title" type="text" />
+      <Input
+        id="title"
+        name="title"
+        type="text"
+        defaultValue={initialData.title}
+      />
       <Label htmlFor="where">Where:</Label>
-      <Input id="where" name="where" type="text" />
+      <Input
+        id="where"
+        name="where"
+        type="text"
+        defaultValue={initialData.where}
+      />
       <Label htmlFor="when">When:</Label>
-      <Input id="when" name="when" type="date" max={today} />
+      <Input
+        id="when"
+        name="when"
+        type="date"
+        max={today}
+        defaultValue={initialData.when}
+      />
       <Label htmlFor="withme">With me:</Label>
-      <Input id="withme" name="withme" type="text" />
+      <Input
+        id="withme"
+        name="withme"
+        type="text"
+        defaultValue={initialData.withme}
+      />
       <Label htmlFor="soundtrack">Soundtrack:</Label>
-      <Input id="soundtrack" name="soundtrack" type="text" />
+      <Input
+        id="soundtrack"
+        name="soundtrack"
+        type="text"
+        defaultValue={initialData.soundtrack}
+      />
       <Label htmlFor="notes">Notes:</Label>
-      <Textarea name="notes" id="notes" cols="30" rows="5"></Textarea>
+      <Textarea
+        name="notes"
+        id="notes"
+        cols="30"
+        rows="5"
+        defaultValue={initialData.notes}></Textarea>
       <SubmitButton type="submit">Submit</SubmitButton>
     </FormContainer>
   );
