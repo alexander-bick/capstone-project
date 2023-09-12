@@ -36,6 +36,7 @@ const FieldContainer = styled.div`
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
+  gap: 1rem;
 `;
 
 const Label = styled.label`
@@ -52,6 +53,14 @@ const NotesContainer = styled.div`
   margin-top: 1rem;
   display: flex;
   align-items: center;
+  gap: 1rem;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
 `;
 
 const EditButton = styled.button`
@@ -92,23 +101,25 @@ const ReturnLink = styled(Link)`
 export default function LocationCard({ location }) {
   const router = useRouter();
 
-  const [locations, setLocations] = useLocalStorageState("favoriteLocations", { defaultValue: [] });
+  const [locations, setLocations] = useLocalStorageState("favoriteLocations", {
+    defaultValue: [],
+  });
 
   const handleEdit = () => {
-    router.push(`/SubmitForm?title=${location.title}`);
+    router.push(`/EditForm/${location.id}`);
   };
 
   const handleDelete = () => {
-    if (window.confirm("Sure you want to delete this location?")) {
+    if (window.confirm("Sure you want to delete this memory?")) {
       if (locations && locations.length) {
         const updatedLocations = locations.filter(
-           (loc) => loc.title !== location.title
+          (loc) => loc.title !== location.title
         );
         setLocations(updatedLocations);
         router.push("/");
+      }
     }
- }
-};
+  };
 
   return (
     <>
@@ -179,7 +190,7 @@ export default function LocationCard({ location }) {
           </Label>
           <p>{location?.notes}</p>
         </NotesContainer>
-        <div>
+        <ButtonContainer>
           <EditButton onClick={() => handleEdit(location.id)}>
             <Image
               src="/edit_black_39.png"
@@ -196,7 +207,7 @@ export default function LocationCard({ location }) {
               height={39}
             />
           </DeleteButton>
-        </div>
+        </ButtonContainer>
         <ReturnLink href="/">
           <Image
             src="/return_39.png"
