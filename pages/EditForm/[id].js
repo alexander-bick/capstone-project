@@ -7,7 +7,7 @@ export default function EditForm() {
   const { id } = router.query;
 
   const [favoriteLocations] = useLocalStorageState("favoriteLocations", []);
-  const locationToEdit = favoriteLocations.find((loc) => loc.id === id);
+  const locationToEdit = favoriteLocations?.find((loc) => loc.id === id);
 
   if (!locationToEdit) {
     return <p>Lost that memory</p>;
