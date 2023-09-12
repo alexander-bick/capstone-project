@@ -105,15 +105,15 @@ export default function LocationCard({ location }) {
     defaultValue: [],
   });
 
-  const handleEdit = () => {
-    router.push(`/EditForm/${location.id}`);
+  const handleEdit = (id) => {
+    router.push(`/EditForm/${id}`);
   };
 
-  const handleDelete = () => {
+  const handleDelete = (id) => {
     if (window.confirm("Sure you want to delete this memory?")) {
       if (locations && locations.length) {
         const updatedLocations = locations.filter(
-          (loc) => loc.title !== location.title
+          (loc) => loc.id !== location.id
         );
         setLocations(updatedLocations);
         router.push("/");
