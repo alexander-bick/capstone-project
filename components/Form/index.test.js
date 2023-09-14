@@ -18,21 +18,12 @@ test("submit button click calls the handleSubmit function", () => {
   expect(mockOnSubmit).toHaveBeenCalled();
 });
 
+test("date input should not allow future dates", () => {
+  const { getByLabelText } = render(<Form />);
 
+  const dateInput = getByLabelText("When:");
 
+  const today = new Date().toISOString().split("T")[0];
 
-    test('date input should not allow future dates', () => {
-        const { getByLabelText } = render(<Form />);
-
-        const dateInput = getByLabelText('When:');
-
-        const today = new Date().toISOString().split('T')[0];
-
-        expect(dateInput).toHaveAttribute('max', today);
-  });
-
-
-
-
-
-
+  expect(dateInput).toHaveAttribute("max", today);
+});
