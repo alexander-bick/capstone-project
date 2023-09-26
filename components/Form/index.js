@@ -14,6 +14,7 @@ const FormContainer = styled.form`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-width: 500px;
   margin: 0 auto;
+  font-family: "Quicksand", sans-serif;
 `;
 
 const Label = styled.label`
@@ -25,23 +26,25 @@ const Input = styled.input`
   font-size: inherit;
   border: 3px solid black;
   border-radius: 0.5rem;
+  font-family: "Quicksand", sans-serif;
 `;
 
 const Textarea = styled.textarea`
-  font-family: inherit;
+  font-family: "Quicksand", sans-serif;
   border: 3px solid black;
   border-radius: 0.5rem;
   padding: 0.5rem;
 `;
 
 const SubmitButton = styled.button`
-  background-color: lightblue;
-  width: 20%;
+  background-color: black;
+  width: auto;
   margin: auto;
   padding: 0.8rem;
   border-radius: 0.6rem;
-  color: black;
+  color: white;
   text-decoration: none;
+  font-family: "Quicksand", sans-serif;
   font-weight: bold;
   border: none;
   font-size: inherit;
@@ -144,7 +147,7 @@ export default function Form({ onSubmit, initialData = {} }) {
         name="notes"
         id="notes"
         cols="30"
-        rows="5"
+        rows="4"
         defaultValue={initialData.notes}></Textarea>
       <SubmitButton type="submit">Submit</SubmitButton>
     </FormContainer>

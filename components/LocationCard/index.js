@@ -8,17 +8,18 @@ import useLocalStorageState from "use-local-storage-state";
 
 const PageHeader = styled.header`
   text-align: center;
-  padding: 1rem 0;
-  border-bottom: 1px solid #ccc;
+  padding: 0, 5rem 0;
+  margin-bottom: 0.6rem;
 `;
 
 const HeaderTitle = styled.h1`
   margin: 0;
+  font-family: "Quicksand", sans-serif;
 `;
 
 const CardContainer = styled.div`
   background-color: white;
-  border: 1px solid #ccc;
+  border: 1px solid #aa9173;
   border-radius: 0.5rem;
   padding: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -26,44 +27,57 @@ const CardContainer = styled.div`
   margin: 0 auto;
 `;
 
-const CardImage = styled(Image)`
-  width: 100%;
-  border-radius: 0.5rem;
+const ImageWrapper = styled.div`
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 1rem;
+  width: 345px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const FieldContainer = styled.div`
-  margin-bottom: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 0.1rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.2rem;
 `;
 
 const Label = styled.label`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1.5rem;
 `;
 
 const FieldValue = styled.p`
   margin: 0;
+  font-family: "Architects Daughter", sans-serif;
+  font-size: 1.25rem;
 `;
 
 const NotesContainer = styled.div`
-  margin-top: 1rem;
+  margin-top: 0.1rem;
+  font-family: "Architects Daughter", sans-serif;
+  font-size: 1.25rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.2rem;
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 1rem;
+  margin-top: 0.2rem;
 `;
 
 const EditButton = styled.button`
+  background-color: transparent;
   color: white;
   border: none;
   border-radius: 5px;
@@ -71,31 +85,24 @@ const EditButton = styled.button`
   cursor: pointer;
   margin-right: 1rem;
   transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #005ecc;
-  }
 `;
 
 const DeleteButton = styled.button`
+  background-color: transparent;
   border: none;
   border-radius: 5px;
   padding: 0.5rem 1rem;
   cursor: pointer;
   margin-right: 1rem;
   transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #c0392b;
-  }
 `;
 
 const ReturnLink = styled(Link)`
   display: flex;
   justify-content: center;
-  border-top: 1px solid #ccc;
-  padding-top: 1rem;
-  margin-top: 1rem;
+  border-top: 1px solid #aa9173;
+  padding-top: 1.1rem;
+  margin-top: 0.05rem;
 `;
 
 export default function LocationCard({ location }) {
@@ -127,21 +134,23 @@ export default function LocationCard({ location }) {
         <PageHeader>
           <HeaderTitle>{location?.title}</HeaderTitle>
         </PageHeader>
-        {location?.image && (
-          <CldImage
-            src={location.image.src}
-            alt="Picture"
-            width={location.image.width / 9}
-            height={location.image.height / 9}
-          />
-        )}
+        <ImageWrapper>
+          {location?.image && (
+            <CldImage
+              src={location.image.src}
+              alt="Picture"
+              width="345"
+              height="200"
+            />
+          )}
+        </ImageWrapper>
         <FieldContainer>
           <Label>
             <Image
               src="/where_39.png"
               alt="Where icon"
-              width={39}
-              height={39}
+              width={35}
+              height={35}
             />
           </Label>
           <FieldValue>{location?.where}</FieldValue>
@@ -151,8 +160,8 @@ export default function LocationCard({ location }) {
             <Image
               src="/calendarWhite_39.png"
               alt="When icon"
-              width={39}
-              height={39}
+              width={35}
+              height={35}
             />
           </Label>
           <FieldValue>{location?.when}</FieldValue>
@@ -162,8 +171,8 @@ export default function LocationCard({ location }) {
             <Image
               src="/withme_39.png"
               alt="With me icon"
-              width={39}
-              height={39}
+              width={35}
+              height={35}
             />
           </Label>
           <FieldValue>{location?.withme}</FieldValue>
@@ -173,8 +182,8 @@ export default function LocationCard({ location }) {
             <Image
               src="/soundtrack_39.png"
               alt="Soundtrack icon"
-              width={39}
-              height={39}
+              width={35}
+              height={35}
             />
           </Label>
           <FieldValue>{location?.soundtrack}</FieldValue>
@@ -184,8 +193,8 @@ export default function LocationCard({ location }) {
             <Image
               src="/notes_39.png"
               alt="Notes icon"
-              width={39}
-              height={39}
+              width={35}
+              height={35}
             />
           </Label>
           <p>{location?.notes}</p>
@@ -195,16 +204,16 @@ export default function LocationCard({ location }) {
             <Image
               src="/edit_black_39.png"
               alt="Return Icon"
-              width={39}
-              height={39}
+              width={30}
+              height={30}
             />
           </EditButton>
           <DeleteButton onClick={() => handleDelete(location.id)}>
             <Image
               src="/delete_black_39.png"
               alt="Return Icon"
-              width={39}
-              height={39}
+              width={30}
+              height={30}
             />
           </DeleteButton>
         </ButtonContainer>

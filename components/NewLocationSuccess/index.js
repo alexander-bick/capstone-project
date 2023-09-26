@@ -6,64 +6,76 @@ import { CldImage } from "next-cloudinary";
 
 const PageHeader = styled.header`
   text-align: center;
-  padding: 1rem 0;
-  border-bottom: 1px solid #ccc;
+  padding: 0.5rem 0;
+  margin-bottom: 0.6rem;
+`;
+
+const ImageWrapper = styled.div`
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  width: 345px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const HeaderTitle = styled.h1`
   margin: 0;
+  font-family: "Quicksand", sans-serif;
 `;
 
 const CardContainer = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-background-color: white;
-border: 1px solid #ccc;
-border-radius: 0.5rem;
-padding: 1rem;
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-max-width: 500px;
-margin: 0 auto;
-height: 100%;
-`;
-
-const CardImage = styled(Image)`
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #aa9173;
   border-radius: 0.5rem;
-  margin-bottom: 1rem;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 0 auto;
+  height: 100%;
 `;
 
 const FieldContainer = styled.div`
-  margin-bottom: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 0.1rem;
   display: flex;
   align-items: center;
+  gap: 1.2rem;
 `;
 
 const Label = styled.label`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1.5rem;
 `;
 
 const FieldValue = styled.p`
   margin: 0;
+  font-family: "Architects Daughter", sans-serif;
 `;
 
 const NotesContainer = styled.div`
-  margin-top: 1rem;
+  margin-top: 0.5rem;
+  font-family: "Architects Daughter", sans-serif;
   display: flex;
   align-items: center;
+  gap: 1.2rem;
 `;
 
 const ConfirmButton = styled.button`
-align-self: center;  
-border-top: 1px solid #ccc;
-padding-top: 1rem;
-margin-top: 1rem;
-background: none;
-border: none;
-cursor: pointer;
+  align-self: center;
+  border-top: 1px solid #aa9173;
+  padding-top: 1rem;
+  margin-top: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
 `;
 
 export default function NewLocationSuccess({ location }) {
@@ -79,21 +91,23 @@ export default function NewLocationSuccess({ location }) {
         <PageHeader>
           <HeaderTitle>{location?.title}</HeaderTitle>
         </PageHeader>
-        {location?.image && (
-          <CldImage
-            src={location.image.src}
-            alt="Picture"
-            width={location.image.width / 9}
-            height={location.image.height / 9}
-          />
-        )}
+        <ImageWrapper>
+          {location?.image && (
+            <CldImage
+              src={location.image.src}
+              alt="Picture"
+              width="345"
+              height="200"
+            />
+          )}
+        </ImageWrapper>
         <FieldContainer>
           <Label>
             <Image
               src="/where_39.png"
               alt="Where icon"
-              width={39}
-              height={39}
+              width={35}
+              height={35}
             />
           </Label>
           <FieldValue>{location?.where}</FieldValue>
@@ -103,8 +117,8 @@ export default function NewLocationSuccess({ location }) {
             <Image
               src="/calendarWhite_39.png"
               alt="When icon"
-              width={39}
-              height={39}
+              width={35}
+              height={35}
             />
           </Label>
           <FieldValue>{location?.when}</FieldValue>
@@ -114,8 +128,8 @@ export default function NewLocationSuccess({ location }) {
             <Image
               src="/withme_39.png"
               alt="With me icon"
-              width={39}
-              height={39}
+              width={35}
+              height={35}
             />
           </Label>
           <FieldValue>{location?.withme}</FieldValue>
@@ -125,8 +139,8 @@ export default function NewLocationSuccess({ location }) {
             <Image
               src="/soundtrack_39.png"
               alt="Soundtrack icon"
-              width={39}
-              height={39}
+              width={35}
+              height={35}
             />
           </Label>
           <FieldValue>{location?.soundtrack}</FieldValue>
@@ -136,8 +150,8 @@ export default function NewLocationSuccess({ location }) {
             <Image
               src="/notes_39.png"
               alt="Soundtrack icon"
-              width={39}
-              height={39}
+              width={35}
+              height={35}
             />
           </Label>
           <p>{location?.notes}</p>
